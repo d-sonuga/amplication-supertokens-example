@@ -18,6 +18,7 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import * as nestAccessControl from "nest-access-control";
 import * as defaultAuthGuard from "../../auth/defaultAuth.guard";
+import { AuthService } from "../../auth/auth.service";
 import { UserService } from "../user.service";
 import { AclValidateRequestInterceptor } from "../../interceptors/aclValidateRequest.interceptor";
 import { AclFilterResponseInterceptor } from "../../interceptors/aclFilterResponse.interceptor";
@@ -33,7 +34,8 @@ import { User } from "./User";
 export class UserControllerBase {
   constructor(
     protected readonly service: UserService,
-    protected readonly rolesBuilder: nestAccessControl.RolesBuilder
+    protected readonly rolesBuilder: nestAccessControl.RolesBuilder,
+    protected readonly authService: AuthService
   ) {}
   @common.UseInterceptors(AclValidateRequestInterceptor)
   @common.Post()
@@ -55,6 +57,7 @@ export class UserControllerBase {
         id: true,
         lastName: true,
         roles: true,
+        supertokensId: true,
         updatedAt: true,
         username: true,
       },
@@ -83,6 +86,7 @@ export class UserControllerBase {
         id: true,
         lastName: true,
         roles: true,
+        supertokensId: true,
         updatedAt: true,
         username: true,
       },
@@ -112,6 +116,7 @@ export class UserControllerBase {
         id: true,
         lastName: true,
         roles: true,
+        supertokensId: true,
         updatedAt: true,
         username: true,
       },
@@ -150,6 +155,7 @@ export class UserControllerBase {
           id: true,
           lastName: true,
           roles: true,
+          supertokensId: true,
           updatedAt: true,
           username: true,
         },
@@ -187,6 +193,7 @@ export class UserControllerBase {
           id: true,
           lastName: true,
           roles: true,
+          supertokensId: true,
           updatedAt: true,
           username: true,
         },

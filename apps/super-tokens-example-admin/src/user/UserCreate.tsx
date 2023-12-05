@@ -24,6 +24,7 @@ export const UserCreate = (props: CreateProps): React.ReactElement => {
           optionText="label"
           optionValue="value"
         />
+        <TextInput label="supertokensId" source="supertokensId" />
         <TextInput label="Username" source="username" />
       </SimpleForm>
     </Create>

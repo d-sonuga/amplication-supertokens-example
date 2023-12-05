@@ -9,41 +9,20 @@ import "./login.scss";
 const CLASS_NAME = "login-page";
 
 const Login = ({ theme }: any) => {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const login = useLogin();
   const notify = useNotify();
   const BASE_URI = process.env.REACT_APP_SERVER_URL;
-  const submit = (e: any) => {
+  const submit = async (e: any) => {
     e.preventDefault();
-    login({ username, password }).catch(() =>
-      notify("Invalid username or password")
-    );
+    login({ email, password }).catch(() => notify("Invalid email or password"));
   };
 
   return (
     <ThemeProvider theme={createTheme(defaultTheme)}>
       <div className={`${CLASS_NAME}`}>
         <div className={`${CLASS_NAME}__wrapper`}>
-          <div className={`${CLASS_NAME}__box`}>
-            <img
-              src="https://amplication.com/assets/graphql.png"
-              alt="GraphQL API"
-            />
-            <h2>Connect via GraphQL</h2>
-            <div className={`${CLASS_NAME}__box__message`}>
-              Connect to the server using GraphQL API with a complete and
-              understandable description of the data in your API
-            </div>
-            <Button
-              type="button"
-              variant="contained"
-              color="primary"
-              href={`${BASE_URI}/graphql`}
-            >
-              Continue
-            </Button>
-          </div>
           <div className={`${CLASS_NAME}__box`}>
             <img
               src="https://amplication.com/assets/react-admin.png"
@@ -56,13 +35,13 @@ const Login = ({ theme }: any) => {
             </div>
             <form onSubmit={submit}>
               <label>
-                <span>Username</span>
+                <span>Email</span>
 
                 <input
-                  name="username"
-                  type="textbox"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
+                  name="email"
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </label>
               <label>

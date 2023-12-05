@@ -3,6 +3,7 @@ import * as nestAccessControl from "nest-access-control";
 import * as gqlACGuard from "../auth/gqlAC.guard";
 import { GqlDefaultAuthGuard } from "../auth/gqlDefaultAuth.guard";
 import * as common from "@nestjs/common";
+import { AuthService } from "../auth/auth.service";
 import { UserResolverBase } from "./base/user.resolver.base";
 import { User } from "./base/User";
 import { UserService } from "./user.service";
@@ -13,8 +14,9 @@ export class UserResolver extends UserResolverBase {
   constructor(
     protected readonly service: UserService,
     @nestAccessControl.InjectRolesBuilder()
-    protected readonly rolesBuilder: nestAccessControl.RolesBuilder
+    protected readonly rolesBuilder: nestAccessControl.RolesBuilder,
+    protected readonly authService: AuthService
   ) {
-    super(service, rolesBuilder);
+    super(service, rolesBuilder, authService);
   }
 }

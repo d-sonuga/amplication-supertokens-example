@@ -1,5 +1,7 @@
+import { generateSupertokensOptions } from "./auth/supertokens/generateSupertokensOptions";
 import { Module } from "@nestjs/common";
 import { UserModule } from "./user/user.module";
+import { AuthModule } from "./auth/auth.module";
 import { OrderModule } from "./order/order.module";
 import { CustomerModule } from "./customer/customer.module";
 import { AddressModule } from "./address/address.module";
@@ -14,7 +16,6 @@ import { GraphQLModule } from "@nestjs/graphql";
 import { ApolloDriver, ApolloDriverConfig } from "@nestjs/apollo";
 
 import { ACLModule } from "./auth/acl.module";
-import { AuthModule } from "./auth/auth.module";
 
 @Module({
   controllers: [],
@@ -22,6 +23,7 @@ import { AuthModule } from "./auth/auth.module";
     ACLModule,
     AuthModule,
     UserModule,
+    AuthModule,
     OrderModule,
     CustomerModule,
     AddressModule,
@@ -41,8 +43,14 @@ import { AuthModule } from "./auth/auth.module";
         return {
           autoSchemaFile: "schema.graphql",
           sortSchema: true,
-          playground,
           introspection: playground || introspection,
+          playground: false,
+
+          cors: {
+            origin:
+              generateSupertokensOptions(configService).appInfo.websiteDomain,
+            credentials: true,
+          },
         };
       },
       inject: [ConfigService],

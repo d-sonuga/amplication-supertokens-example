@@ -61,6 +61,14 @@ class UserCreateInput {
   })
   @IsString()
   @Field(() => String)
+  supertokensId!: string;
+
+  @ApiProperty({
+    required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
   username!: string;
 }
 

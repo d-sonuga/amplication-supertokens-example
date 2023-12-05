@@ -22,6 +22,7 @@ export const UserEdit = (props: EditProps): React.ReactElement => {
           optionText="label"
           optionValue="value"
         />
+        <TextInput label="supertokensId" source="supertokensId" />
         <TextInput label="Username" source="username" />
       </SimpleForm>
     </Edit>

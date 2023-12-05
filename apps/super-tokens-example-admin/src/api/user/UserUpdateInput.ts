@@ -5,5 +5,6 @@ export type UserUpdateInput = {
   lastName?: string | null;
   password?: string;
   roles?: InputJsonValue;
+  supertokensId?: string;
   username?: string;
 };

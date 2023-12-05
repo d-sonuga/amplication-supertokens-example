@@ -70,6 +70,17 @@ class UserUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
+  supertokensId?: string;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
   username?: string;
 }
 

@@ -60,6 +60,17 @@ class UserWhereInput {
   @Field(() => StringFilter, {
     nullable: true,
   })
+  supertokensId?: StringFilter;
+
+  @ApiProperty({
+    required: false,
+    type: StringFilter,
+  })
+  @Type(() => StringFilter)
+  @IsOptional()
+  @Field(() => StringFilter, {
+    nullable: true,
+  })
   username?: StringFilter;
 }
 
