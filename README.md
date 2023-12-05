@@ -1,0 +1,1 @@
+# amplication-supertokens-example
